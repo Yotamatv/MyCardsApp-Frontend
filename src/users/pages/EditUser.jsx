@@ -17,7 +17,6 @@ export default function EditUser() {
   const onSubmit = (data) => {
     handleEditUser(data);
     navigate(ROUTES.ROOT);
-    navigate(0);
   };
   const { data, errors, ...rest } = useForm(initForm, signupSchema, onSubmit);
 

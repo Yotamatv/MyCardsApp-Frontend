@@ -11,6 +11,7 @@ import {
 import useAxios from "../../hooks/useAxios";
 import { useSnack } from "../../providers/SnackBarProvider";
 import { useUser } from "../../users/providers/UserProvider";
+import normalizeCard from "../models/joi-schema/normalizeCard";
 
 export default function useCards() {
   const [cards, setCards] = useState(null);
@@ -74,7 +75,7 @@ export default function useCards() {
   const handleUpdateCard = useCallback(async (cardId, cardFromClient) => {
     try {
       setLoading(true);
-      const card = await editCard(cardId, cardFromClient);
+      const card = await editCard(cardId, normalizeCard(cardFromClient));
       requestStatus(false, null, null, card);
       snack("success", "The business card has been successfully updated");
     } catch (error) {
